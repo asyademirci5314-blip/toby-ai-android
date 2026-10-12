@@ -1,0 +1,40 @@
+name: Toby AI APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Projeyi al
+        uses: actions/checkout@v4
+
+      - name: Java kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Android SDK kur
+        uses: android-actions/setup-android@v3
+
+      - name: Gradle ile APK oluştur
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: APK derle
+        working-directory: android
+        run: gradle assembleDebug
+
+      - name: APK dosyasını sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: Toby-AI-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk

@@ -1,0 +1,6 @@
+.env
+backups/
+*.bak
+.gradle/
+build/
+local.properties

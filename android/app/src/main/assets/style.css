@@ -1,0 +1,232 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top, #292451 0%, transparent 55%),
+    #101225;
+  color: #f6f3ff;
+  font-family: system-ui, sans-serif;
+}
+
+.app {
+  width: min(100% - 28px, 720px);
+  margin: auto;
+  padding: 24px 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #bd8aff, #7567ff);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+.header h1 {
+  margin-bottom: 3px;
+}
+
+.header p, .hint, footer {
+  color: #aaa8c8;
+  font-size: 13px;
+}
+
+.status {
+  margin-left: auto;
+  font-size: 12px;
+  color: #d4c4ff;
+}
+
+.hero, .panel {
+  padding: 24px;
+  margin-bottom: 18px;
+  border: 1px solid #393452;
+  border-radius: 24px;
+  background: #1a1930;
+}
+
+.hero {
+  text-align: center;
+  background: linear-gradient(145deg, #292044, #1a1930);
+}
+
+.orb {
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d7a2ff, #766aff);
+  box-shadow: 0 0 40px #9273ff55;
+  font-size: 38px;
+}
+
+.eyebrow {
+  color: #c4a9ff;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.hero h2 {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+button {
+  border: 0;
+  border-radius: 13px;
+  padding: 13px 18px;
+  margin-top: 12px;
+  width: 100%;
+  background: linear-gradient(100deg, #b77aff, #7971ff);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+input, textarea {
+  width: 100%;
+  margin: 8px 0 16px;
+  padding: 13px;
+  border: 1px solid #45405f;
+  border-radius: 12px;
+  background: #111124;
+  color: white;
+  font: inherit;
+}
+
+input[type="range"] {
+  padding: 0;
+  margin: 0;
+  accent-color: #b77aff;
+}
+
+.brightness-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brightness-row strong {
+  min-width: 45px;
+}
+
+label {
+  font-size: 13px;
+  color: #d0c9e8;
+}
+
+.result {
+  margin: 16px 0 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  padding: 12px;
+}
+
+/* Toby AI PIN giris ekrani */
+[hidden] {
+  display: none !important;
+}
+
+.login-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at top, #34305c, #101225 70%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  padding: 28px 22px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 24px;
+  background: rgba(25, 25, 48, .94);
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+.login-icon {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.login-card h1 {
+  margin: 8px 0;
+  color: #e6c9ff;
+}
+
+.login-card p {
+  color: #d2cde8;
+}
+
+.login-card label {
+  display: block;
+  margin: 22px 0 8px;
+  text-align: left;
+}
+
+.login-card input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #8c7ac5;
+  border-radius: 12px;
+  background: #111225;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 10px;
+}
+
+.login-card button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  background: #a987ff;
+  color: #171329;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#loginMessage {
+  min-height: 24px;
+  overflow-wrap: anywhere;
+}

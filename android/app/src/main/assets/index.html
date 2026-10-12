@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101225">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Toby AI</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-icon">🔐</div>
+      <h1>💜 Toby AI</h1>
+      <p>Merhaba! Devam etmek için PIN'ini gir.</p>
+
+      <form id="loginForm">
+        <label for="pinInput">4 haneli güvenlik PIN'i</label>
+        <input
+          id="pinInput"
+          type="password"
+          inputmode="numeric"
+          pattern="[0-9]{4}"
+          maxlength="4"
+          minlength="4"
+          autocomplete="current-password"
+          placeholder="••••"
+          required
+        >
+        <button id="loginButton" type="submit">Kilidi Aç</button>
+      </form>
+
+      <p id="loginMessage" class="result" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <main id="appContent" class="container" hidden>
+    <h1>💜 Toby AI</h1>
+    <button id="logoutButton" type="button">🔒 Kilitle</button>
+    <p id="status">Sunucu kontrol edilmedi</p>
+
+    <button id="testButton">Bağlantıyı test et</button>
+    <p id="result" class="result">Merhaba! Ben Toby.</p>
+
+    <hr>
+
+    <h2>🎙️ Sesli Komut</h2>
+    <button id="voiceButton">🎙️ Toby, beni dinle</button>
+    <p id="voiceStatus" class="result">Sesli komut hazır.</p>
+
+    <hr>
+
+    <h2>☀️ Parlaklık</h2>
+    <label for="brightness">Parlaklık seviyesi</label>
+    <input id="brightness" type="range" min="10" max="100" value="50">
+    <p id="brightnessValue">%50</p>
+    <button id="brightnessButton">Parlaklığı uygula</button>
+
+    <hr>
+
+    <h2>💬 WhatsApp Mesajı</h2>
+    <label for="phone">Telefon numarası (ülke koduyla)</label>
+    <input id="phone" type="tel" placeholder="905xxxxxxxxx">
+
+    <label for="message">Mesajın</label>
+    <textarea id="message" placeholder="Mesajını yaz..."></textarea>
+
+    <button id="whatsappButton">WhatsApp mesajını hazırla</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

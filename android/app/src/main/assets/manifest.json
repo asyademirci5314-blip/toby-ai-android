@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "Toby AI",
+  "short_name": "Toby AI",
+  "description": "Kişisel yapay zekâ asistanın",
+  "lang": "tr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#101225",
+  "theme_color": "#101225",
+  "icons": [
+    {
+      "src": "/icons/toby-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
