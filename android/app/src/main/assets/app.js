@@ -273,3 +273,140 @@ if (voiceButton && voiceStatus) {
     });
   }
 }
+
+/* Toby: cihazda saklanan notlar ve hafiza */
+(() => {
+  const el = (id) => document.getElementById(id);
+  const NOTES_KEY = "toby_notes_v1";
+  const MEMORY_KEY = "toby_memory_v1";
+
+  function read(key) {
+    try {
+      const data = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(data) ? data : [];
+    } catch (_) {
+      return [];
+    }
+  }
+
+  function save(key, data) {
+    try {
+      localStorage.setItem(key, JSON.stringify(data));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function message(id, text) {
+    if (el(id)) el(id).textContent = text;
+  }
+
+  function node(tag, className, text) {
+    const item = document.createElement(tag);
+    if (className) item.className = className;
+    if (text !== undefined) item.textContent = text;
+    return item;
+  }
+
+  function render(key, listId, messageId, isNote) {
+    const list = el(listId);
+    if (!list) return;
+    list.replaceChildren();
+
+    const items = read(key);
+    if (!items.length) {
+      list.appendChild(node("p", "", isNote
+        ? "Henüz kayıtlı notun yok."
+        : "Hafızada henüz bilgi yok."));
+      return;
+    }
+
+    items.slice().reverse().forEach((item) => {
+      const card = node("article", "local-item");
+
+      if (isNote) {
+        card.appendChild(node("div", "local-item-title", item.title));
+      }
+      card.appendChild(node("div", "", isNote ? item.text : item.text));
+      card.appendChild(node("div", "local-item-date", item.date));
+
+      const remove = node("button", "", isNote ? "🗑️ Notu sil" : "🗑️ Bilgiyi sil");
+      remove.type = "button";
+      remove.addEventListener("click", () => {
+        if (!confirm(isNote ? "Bu not silinsin mi?" : "Bu bilgi silinsin mi?")) return;
+        const updated = read(key).filter((entry) => entry.id !== item.id);
+        if (!save(key, updated)) {
+          message(messageId, "Kaydedilemedi. Cihaz depolamasını kontrol et.");
+          return;
+        }
+        message(messageId, "Silindi.");
+        render(key, listId, messageId, isNote);
+      });
+
+      card.appendChild(remove);
+      list.appendChild(card);
+    });
+  }
+
+  el("saveNoteButton")?.addEventListener("click", () => {
+    const title = el("notesTitle").value.trim() || "Başlıksız not";
+    const text = el("notesText").value.trim();
+
+    if (!text) {
+      message("notesMessage", "Önce notunun içeriğini yaz.");
+      return;
+    }
+
+    const items = read(NOTES_KEY);
+    items.push({
+      id: Date.now().toString() + Math.random().toString(16).slice(2),
+      title,
+      text,
+      date: new Date().toLocaleString("tr-TR")
+    });
+
+    if (!save(NOTES_KEY, items)) {
+      message("notesMessage", "Kayıt yapılamadı. Depolama alanını kontrol et.");
+      return;
+    }
+
+    el("notesTitle").value = "";
+    el("notesText").value = "";
+    message("notesMessage", "Not cihazına kaydedildi.");
+    render(NOTES_KEY, "notesList", "notesMessage", true);
+  });
+
+  el("saveMemoryButton")?.addEventListener("click", () => {
+    const text = el("memoryText").value.trim();
+
+    if (!text) {
+      message("memoryMessage", "Önce hatırlanacak bilgiyi yaz.");
+      return;
+    }
+
+    const items = read(MEMORY_KEY);
+    items.push({
+      id: Date.now().toString() + Math.random().toString(16).slice(2),
+      text,
+      date: new Date().toLocaleString("tr-TR")
+    });
+
+    if (!save(MEMORY_KEY, items)) {
+      message("memoryMessage", "Kayıt yapılamadı. Depolama alanını kontrol et.");
+      return;
+    }
+
+    el("memoryText").value = "";
+    message("memoryMessage", "Bilgi Toby'nin yerel hafızasına kaydedildi.");
+    render(MEMORY_KEY, "memoryList", "memoryMessage", false);
+  });
+
+  try {
+    render(NOTES_KEY, "notesList", "notesMessage", true);
+    render(MEMORY_KEY, "memoryList", "memoryMessage", false);
+  } catch (_) {
+    message("notesMessage", "Notlar yüklenirken sorun oluştu.");
+    message("memoryMessage", "Hafıza yüklenirken sorun oluştu.");
+  }
+})();

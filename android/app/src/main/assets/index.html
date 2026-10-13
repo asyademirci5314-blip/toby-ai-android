@@ -68,6 +68,27 @@
     <textarea id="message" placeholder="Mesajını yaz..."></textarea>
 
     <button id="whatsappButton">WhatsApp mesajını hazırla</button>
+    <hr>
+    <section id="notesSection" class="local-section">
+      <h2>📝 Notlarım</h2>
+      <label for="notesTitle">Not başlığı</label>
+      <input id="notesTitle" type="text" maxlength="100" placeholder="Not başlığı">
+      <label for="notesText">Notun</label>
+      <textarea id="notesText" maxlength="5000" rows="4" placeholder="Notunu yaz..."></textarea>
+      <button id="saveNoteButton" type="button">💾 Notu kaydet</button>
+      <p id="notesMessage" class="result" role="status"></p>
+      <div id="notesList"></div>
+    </section>
+    <hr>
+    <section id="memorySection" class="local-section">
+      <h2>🧠 Toby'nin Hafızası</h2>
+      <p>Toby'nin hatırlamasını istediğin bilgileri kaydet.</p>
+      <label for="memoryText">Hatırlanacak bilgi</label>
+      <textarea id="memoryText" maxlength="2000" rows="3" placeholder="Hatırlanacak bilgiyi yaz..."></textarea>
+      <button id="saveMemoryButton" type="button">🧠 Hafızaya kaydet</button>
+      <p id="memoryMessage" class="result" role="status"></p>
+      <div id="memoryList"></div>
+    </section>
   </main>
 
   <script src="app.js"></script>
