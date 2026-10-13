@@ -8,7 +8,7 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId 'com.toby.ai'
+        applicationId 'com.toby.ai.yeni'
         minSdk 26
         targetSdk 35
         versionCode 1
